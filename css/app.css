@@ -64,3 +64,7 @@ form button{
 form a, form a:visited{
 color: blue;
 }
+
+.validate_error{
+    background: rgba(255, 0, 0, 0.2);
+  }

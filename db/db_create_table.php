@@ -14,6 +14,7 @@ try {
     email             TEXT UNIQUE,
     age               INT,
     user_password     TEXT,
+    active            BOOLEAN,
     PRIMARY KEY(user_uuid)
   ) WITHOUT ROWID');
     $q->execute();

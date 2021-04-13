@@ -11,7 +11,7 @@
 
 <body>
 
-    <form action="">
+    <form action="#" method="POST" onsubmit="return validate()">
 
         <h1>Sign up</h1>
         <label for="first_name">First name</label>
@@ -26,12 +26,14 @@
         <input type="password" data-validate="con_pass" name="con_pass">
         <label for="age">Age</label>
         <input type="text" data-validate="age" name="age" maxlength="2">
-        <button>Login</button>
+        <button>Sign up</button>
         <div>
             <p>Already have an account? <a href="/login">login</a></p>
         </div>
 
     </form>
+
+    <script src="../js/validator.js"></script>
 
 </body>
 

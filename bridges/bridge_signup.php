@@ -63,13 +63,14 @@ try {
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare(' INSERT INTO users
-                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password)');
+                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password , :active)');
     $q->bindValue(':user_uuid', bin2hex(random_bytes(16)));
     $q->bindValue(':first_name', $_POST['first_name']);
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
     $q->bindValue(':age', $_POST['age']);
     $q->bindValue(':password', $_POST['pass']);
+    $q->bindValue(':active', 1);
     $q->execute();
     $user = $q->fetch();
     if (!$user) {
