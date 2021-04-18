@@ -90,3 +90,25 @@ main h1{
     text-align: center;
     margin-top: 2rem;
 }
+
+#users{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    padding: 2rem;
+}
+
+.user{
+    background-color: rgba(58, 2, 85, 0.2);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.user div.bold{
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.user div.bold:first-child{
+    margin-top: 0;
+}

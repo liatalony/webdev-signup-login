@@ -6,7 +6,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 
 <body>
 
-    <form action="#" method="POST" onsubmit="return validate()">
+    <form action="/login" method="POST" onsubmit="return validate()">
 
         <h1>Login</h1>
 

@@ -35,12 +35,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 
     <header>
         <nav>
-            <a href="#">Log out</a>
+            <a href="/logout">Log out</a>
         </nav>
     </header>
     <main>
         <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>
-        <button>Deactivate account</button>
+        <form action="/deactivate" method="POST">
+            <button>Deactivate account</button>
+        </form>
     </main>
 </body>
 
