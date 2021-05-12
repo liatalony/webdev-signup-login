@@ -37,6 +37,8 @@ try {
     }
     session_start();
     $_SESSION['user_uuid'] = $user['user_uuid'];
+    $_SESSION['user_role'] = $user['user_role'];
+
     header('Location: /admin');
     exit();
 } catch (PDOException $ex) {
