@@ -3,49 +3,30 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/router.php');
 
 // ##############################
-get('/admin', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin.php');
-});
+get('/admin', '/views/view_admin.php');
 
-// ##############################
-get('/login', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_login.php');
-});
+get('/login', '/views/view_login.php');
 
-// ##############################
-get('/logout', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/bridges/bridge_logout.php');
-});
+get('/logout', '/bridges/bridge_logout.php');
 
-// ##############################
-get('/signup', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_signup.php');
-});
+get('/profile', '/views/view_profile.php');
 
-// ##############################
-get('/users', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_users.php');
-});
+get('/signup', '/views/view_signup.php');
+
+get('/users', '/views/view_users.php');
 
 
-
-// ##############################
-// ##############################
 // ##############################¨
+post('/deactivate', '/bridges/bridge_deactivate.php');
 
-post('/deactivate', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/bridges/bridge_deactivate.php');
-});
+post('/login', '/bridges/bridge_login.php');
 
-post('/login', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/bridges/bridge_login.php');
-});
+post('/profile', '/bridges/bridge_update_profile.php');
 
-post('/signup', function () {
-  require_once($_SERVER['DOCUMENT_ROOT'] . '/bridges/bridge_signup.php');
-});
+post('/signup', '/bridges/bridge_signup.php');
 
-// For GET or POST
-any('/404', function () {
-  echo 'Not found';
-});
+post('/create-users-table', '/db/db_create_table.php');
+
+
+// ##############################¨
+any('/404', '/views/view_404.php');

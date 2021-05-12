@@ -1,5 +1,9 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['user_uuid'])) {
+    header('Location: /login');
+    exit();
+}
 if (!isset($_POST['first_name'])) {
     header('Location: /signup');
     echo 'first name';
@@ -62,23 +66,26 @@ try {
     $db = new PDO("sqlite:$db_path");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $q = $db->prepare(' INSERT INTO users
-                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password ,:user_role, :active)');
-    $q->bindValue(':user_uuid', bin2hex(random_bytes(16)));
+    $q = $db->prepare(' UPDATE users
+                    SET first_name = :first_name,
+                        last_name = :last_name,
+                        email = :email,
+                        age = :age,
+                        user_password = :user_password
+                    WHERE user_uuid = :user_uuid ');
+    $q->bindValue(':user_uuid', $_SESSION['user_uuid']);
     $q->bindValue(':first_name', $_POST['first_name']);
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
     $q->bindValue(':age', $_POST['age']);
-    $q->bindValue(':password', $_POST['pass']);
-    $q->bindValue(':user_role', 2);
-    $q->bindValue(':active', 1);
+    $q->bindValue(':user_password', $_POST['pass']);
     $q->execute();
     $user = $q->fetch();
     if (!$user) {
-        header('Location: /login');
+        header('Location: /admin');
         exit();
     }
-    header('Location: /signup');
+    header('Location: /profile');
     exit();
 } catch (PDOException $ex) {
     echo $ex;

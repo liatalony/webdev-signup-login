@@ -1,10 +1,10 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['user_uuid'])) {
     header('Location: /login');
     exit();
 }
+
 
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
@@ -24,26 +24,20 @@ try {
     echo $ex;
 }
 ?>
-
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 ?>
-<title>Welcome</title>
-</head>
+<title><?= "{$user['first_name']} {$user['last_name']}" ?></title>
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
+?>
 
-<body class="main">
-
-    <header>
-        <nav>
-            <a href="/logout">Log out</a>
-        </nav>
-    </header>
-    <main>
-        <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>
-        <form action="/deactivate" method="POST">
-            <button>Deactivate account</button>
-        </form>
-    </main>
+<main>
+    <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>
+    <form action="/deactivate" method="POST">
+        <button>Deactivate account</button>
+    </form>
+</main>
 </body>
 
 </html>

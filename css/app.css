@@ -9,13 +9,20 @@ body{
     background-color: #210030;
 }
 
+.form_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    padding-bottom: 4rem;
+}
+
 form{
     display: block;
     margin: auto;
     width: 400px;
     background-color: rgba(255, 255, 255, 0.7);
     border-radius: 15px;
-    margin-top: 15%;
     padding: 2rem;
 }
 
@@ -93,7 +100,7 @@ main h1{
 
 #users{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-gap: 1rem;
     padding: 2rem;
 }
@@ -104,6 +111,12 @@ main h1{
     border-radius: 5px;
 }
 
+.user button{
+    display: block;
+    margin-left: auto;
+    padding: .5rem;
+}
+
 .user div.bold{
     font-weight: bold;
     margin-top: 1rem;
@@ -111,4 +124,8 @@ main h1{
 
 .user div.bold:first-child{
     margin-top: 0;
+}
+
+form.profile_form input{
+    border: rgb(63, 63, 63) 1px solid;
 }
