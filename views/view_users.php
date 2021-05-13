@@ -27,7 +27,8 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         $q = $db->prepare('SELECT * FROM users
-                                ORDER BY age asc');
+                            WHERE active=1
+                            ORDER BY first_name asc');
         $q->execute();
         $users = $q->fetchAll();
         echo '<div id="users">';
@@ -45,7 +46,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
                 <div><?= $user['email'] ?></div>
                 <div class="bold">AGE: </div>
                 <div><?= $user['age'] ?></div>
-                <button class="delete">Delete user</button>
+                <button onclick="delete_user('<?= $user['user_uuid'] ?>')">Delete user</button>
             </div>
     <?php
         }
@@ -55,6 +56,25 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
     }
     ?>
 </main>
+
+<script>
+    async function delete_user(user_id) {
+        let div_user = event.target.parentNode
+        console.log(user_id);
+        let conn = await fetch(`/users/delete/${user_id}`, {
+            "method": "POST"
+        })
+        if (!conn.ok) {
+            alert("upps...");
+            return
+        }
+
+        // SEND EMAIL TO USER
+        let data = await conn.text()
+        console.log(data)
+        div_user.remove()
+    }
+</script>
 </body>
 
 </html>

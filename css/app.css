@@ -129,3 +129,30 @@ main h1{
 form.profile_form input{
     border: rgb(63, 63, 63) 1px solid;
 }
+
+#tasks{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color:rgba(58, 2, 85, 0.2);
+    border-radius: 15px;
+    margin: 2rem;
+}
+
+#tasks>div{
+    width: 100%;
+    margin: 1rem;
+}
+
+.todo, .doing, .done{
+    background-color: rgba(58, 2, 85, 0.2);
+    padding: .5rem;
+    border-radius: 5px;
+}
+
+.task{
+    background-color: rgba(58, 2, 85, 0.2);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: .2rem;
+}
