@@ -75,6 +75,7 @@ try {
     $q->execute();
     $user = $q->fetch();
     if (!$user) {
+        //SEND EMAIL
         header('Location: /login');
         exit();
     }
