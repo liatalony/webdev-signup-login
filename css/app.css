@@ -156,3 +156,13 @@ form.profile_form input{
     border-radius: 5px;
     margin-bottom: .2rem;
 }
+
+.todo .task{
+    background-color: rgba(116, 6, 6, 0.2);
+}
+.doing .task{
+    background-color: rgba(138, 90, 0, 0.2);
+}
+.done .task{
+    background-color: rgba(0, 93, 24, 0.2);
+}
