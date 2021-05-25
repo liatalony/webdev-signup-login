@@ -50,6 +50,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         <input type="file">
         <button type="sumbit">Save</button>
     </form>
+    <form action="/deactivate" method="POST">
+        <button>Deactivate account</button>
+    </form>
 </main>
 <script src="../js/validator.js"></script>
 </body>

@@ -35,6 +35,22 @@ if (!isset($_POST['age'])) {
     exit();
 }
 
+if (!isset($_FILES['pic'])) {
+    //header('Location: /signup');
+    echo 'age';
+    exit();
+}
+
+$valid_extensions = ['png', 'jpg', 'jpeg', 'gif', 'zip', 'pdf'];
+$image_type = mime_content_type($_FILES['pic']['tmp_name']); // image/png
+$extension = strrchr($image_type, '/'); // /png ... /tmp ... /jpg
+$extension = ltrim($extension, '/'); // png ... jpg ... plain
+
+if (!in_array($extension, $valid_extensions)) {
+    echo "mmm.. hacking me?";
+    exit();
+}
+
 if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
     header('Location: /signup');
     echo 'bad email';
@@ -57,13 +73,17 @@ if (
     exit();
 }
 
+$random_image_name = bin2hex(random_bytes(16)) . ".$extension";
+move_uploaded_file($_FILES['my_picture']['tmp_name'], "images/$random_image_name");
+echo 'File uploaded';
+
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
     $db = new PDO("sqlite:$db_path");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     $q = $db->prepare(' INSERT INTO users
-                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password ,:user_role, :active)');
+                    VALUES (:user_uuid , :first_name , :last_name , :email , :age , :password ,:user_role, :active, :image_path)');
     $q->bindValue(':user_uuid', bin2hex(random_bytes(16)));
     $q->bindValue(':first_name', $_POST['first_name']);
     $q->bindValue(':last_name', $_POST['last_name']);
@@ -72,6 +92,7 @@ try {
     $q->bindValue(':password', $_POST['pass']);
     $q->bindValue(':user_role', 2);
     $q->bindValue(':active', 1);
+    $q->bindValue(':image_path', "/uploads/$random_image_name");
     $q->execute();
     $user = $q->fetch();
     if (!$user) {
