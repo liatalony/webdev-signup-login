@@ -32,6 +32,7 @@ form h1{
 
 form input{
     padding: .5rem;
+    background-color: white;
     border-radius: 5px;
     margin-bottom: 1rem;
     width: 100%;

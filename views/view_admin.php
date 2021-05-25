@@ -34,6 +34,31 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
 
 <main>
     <h1 class="welcome"><?= "Welcome {$user['first_name']}" ?></h1>
+    <?php
+    try {
+        $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
+        $db = new PDO("sqlite:$db_path");
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $q = $db->prepare('SELECT image_path FROM users WHERE user_uuid = :user_uuid');
+        $q->bindValue(':user_uuid', $_SESSION['user_uuid']);
+        $q->execute();
+        $img = $q->fetch();
+    } catch (PDOException $ex) {
+        echo $ex;
+    }
+    ?>
+    <style>
+        .img {
+            background-image: url(<?= $img ?>);
+            background-position: center;
+            background-size: cover;
+            border-radius: 50px;
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+    <div class="img"></div>
     <h2>Your Projects</h2>
     <div id="projects">
         <?php
@@ -64,9 +89,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         }
         ?>
     </div>
-    <form action="/deactivate" method="POST">
-        <button>Deactivate account</button>
-    </form>
 </main>
 </body>
 
