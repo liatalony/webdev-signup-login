@@ -170,6 +170,21 @@ form.profile_form input{
 main{
     padding: 2rem;
 }
+h2{
+    display: inline-block;
+}
+a.add{
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    padding: .5rem .8rem;
+    border-radius: 50px;
+    background-color: rgba(58, 2, 85, 1);
+    color: white;
+    margin-left: auto;
+    width: max-content;
+
+}
 #projects{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
@@ -209,4 +224,14 @@ img{
 }
 .hidden{
     display: none;
+}
+
+.new_project{
+    background-color:rgba(58, 2, 85, 0.2) ;
+}
+.new_project h2{
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    cursor: pointer;
 }
