@@ -48,18 +48,10 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         echo $ex;
     }
     ?>
-    <style>
-        .img {
-            background-image: url(<?= $img ?>);
-            background-position: center;
-            background-size: cover;
-            border-radius: 50px;
-            height: 100px;
-            width: 100px;
-        }
-    </style>
-    <div class="img"></div>
+
     <h2>Your Projects</h2>
+    <a href="#" class="add" onclick="display()">+</a>
+    </div>
     <div id="projects">
         <?php
         try {
@@ -89,7 +81,24 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         }
         ?>
     </div>
+    <form action="/admin" method="post" class="new_project hidden">
+        <h2 onclick="close_form()">X</h2>
+        <input type="hidden" value="<?= $project['project_uuid'] ?>" name="project_uuid">
+        <label for="project_name">Project name:</label>
+        <input required type="text" name="project_name">
+        <button>Create project</button>
+    </form>
 </main>
+<script>
+    function display() {
+        document.querySelector(".new_project").classList.remove('hidden');
+    }
+
+    function close_form() {
+        document.querySelector(".new_project").classList.add('hidden');
+        document.querySelector(".new_project").reset();
+    }
+</script>
 </body>
 
 </html>

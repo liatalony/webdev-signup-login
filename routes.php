@@ -19,6 +19,8 @@ get('/users', '/views/view_users.php');
 
 
 // ##############################¨
+post('/admin', '/bridges/bridge_create_project.php');
+
 post('/deactivate', '/bridges/bridge_deactivate.php');
 
 post('/create-users-table', '/db/db_create_table.php');
