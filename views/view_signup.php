@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
 
     <div class="form_wrapper">
 
-        <form action="signup" method="POST" onsubmit="return validate()">
+        <form action="signup" method="POST" onsubmit="return validate()" enctype="multipart/form-data">
 
             <h1>Sign up</h1>
             <label for="first_name">First name</label>

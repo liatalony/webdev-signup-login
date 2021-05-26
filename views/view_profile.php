@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_uuid'])) {
     header('Location: /login');
     exit();
 }
+
 try {
     $db_path = $_SERVER['DOCUMENT_ROOT'] . '/db/users.db';
     $db = new PDO("sqlite:$db_path");
@@ -17,6 +18,7 @@ try {
         header('Location: /login');
         exit();
     }
+
     // echo "Hi {$user['first_name']} {$user['last_name']}";
 } catch (PDOException $ex) {
     echo $ex;
@@ -33,7 +35,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
 
 <main>
     <h1 class="welcome">My profile</h1>
-    <form action="/profile" method="POST" onsubmit="return validate()" class="profile_form">
+    <form action="/profile" method="POST" onsubmit="return validate()" class="profile_form" enctype="multipart/form-data">
+        <div class="img" <?php if ($user['image_path'] == 'NULL') {
+                                echo 'class="hidden"';
+                            } ?>>
+            <img src="<?= $user['image_path'] ?>" alt="profile_picture">
+        </div>
         <label for="first_name">First name</label>
         <input type="text" placeholder="Your first name" data-validate="str" name="first_name" value="<?= $user['first_name'] ?>">
         <label for="last_name">Last name</label>
@@ -47,7 +54,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         <label for="age">Age</label>
         <input type="text" data-validate="age" name="age" maxlength="2" value="<?= $user['age'] ?>">
         <label for="pic">Profile picture</label>
-        <input type="file">
+        <input type="file" name="pic" data-validate="pic">
         <button type="sumbit">Save</button>
     </form>
     <form action="/deactivate" method="POST">

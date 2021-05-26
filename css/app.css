@@ -167,3 +167,46 @@ form.profile_form input{
 .done .task{
     background-color: rgba(0, 93, 24, 0.2);
 }
+main{
+    padding: 2rem;
+}
+#projects{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 150px));
+    grid-gap: 1rem;
+    margin-top: 2rem;
+}
+#projects a{
+    text-decoration: none;
+    color: black;
+}
+
+#projects a:visited{
+    color: black;
+}
+
+#projects .project{
+    font-weight: bold;
+    padding: 1rem;
+    background-color: rgba(58, 2, 85, 0.2);
+    width: inherit;
+    height: 150px; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 15px;
+}
+.img{ 
+    height: 100px; 
+    width: 100px; 
+    border-radius: 50px;
+    overflow: hidden; 
+}
+img{
+    width: inherit;
+
+}
+.hidden{
+    display: none;
+}
