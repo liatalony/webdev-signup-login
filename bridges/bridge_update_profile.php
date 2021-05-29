@@ -99,7 +99,7 @@ try {
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
     $q->bindValue(':age', $_POST['age']);
-    $q->bindValue(':user_password', $_POST['pass']);
+    $q->bindValue(':user_password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
     $q->bindValue(':image_path', "/images/$random_image_name");
     $q->execute();
     $user = $q->fetch();

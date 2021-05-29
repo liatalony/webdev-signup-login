@@ -68,7 +68,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
             alert("upps...");
             return
         }
-
+        window.location.href = `/sending-email/${user_id}`;
         // SEND EMAIL TO USER
         let data = await conn.text()
         console.log(data)

@@ -90,7 +90,7 @@ try {
     $q->bindValue(':last_name', $_POST['last_name']);
     $q->bindValue(':email', $_POST['email']);
     $q->bindValue(':age', $_POST['age']);
-    $q->bindValue(':password', $_POST['pass']);
+    $q->bindValue(':password', password_hash($_POST['pass'], PASSWORD_DEFAULT));
     $q->bindValue(':user_role', 2);
     $q->bindValue(':active', 1);
     $q->bindValue(':image_path', "/images/$random_image_name");
@@ -98,9 +98,13 @@ try {
     $user = $q->fetch();
     if (!$user) {
         //SEND EMAIL
-        header('Location: /login');
+        session_start();
+        $_SESSION['signup_name'] = "{$_POST['first_name']} {$_POST['last_name']}";
+        $_SESSION['signup_email'] = $_POST['email'];
+        header('Location: /welcome-email');
         exit();
     }
+
     header('Location: /signup');
     exit();
 } catch (PDOException $ex) {
