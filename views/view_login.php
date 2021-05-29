@@ -15,6 +15,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_top.php');
             <input type="text" placeholder="Email" data-validate="email" name="email">
             <label for="pass">Password</label>
             <input type="password" placeholder="Password" data-validate="pass" name="pass">
+            <sub><a href="/get-password">Forgot password</a></sub>
             <button>Login</button>
             <div>
                 <p>Don't have an account? <a href="/signup">Sign-up</a></p>

@@ -81,21 +81,22 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         }
         ?>
     </div>
-    <form action="/admin" method="post" class="new_project hidden">
-        <h2 onclick="close_form()">X</h2>
-        <input type="hidden" value="<?= $project['project_uuid'] ?>" name="project_uuid">
-        <label for="project_name">Project name:</label>
-        <input required type="text" name="project_name">
-        <button>Create project</button>
-    </form>
+    <div class="bg hidden">
+        <form action="/admin" method="post" class="new_project">
+            <h2 onclick="close_form()">X</h2>
+            <label for="project_name">Project name:</label>
+            <input required type="text" name="project_name">
+            <button>Create project</button>
+        </form>
+    </div>
 </main>
 <script>
     function display() {
-        document.querySelector(".new_project").classList.remove('hidden');
+        document.querySelector(".bg").classList.remove('hidden');
     }
 
     function close_form() {
-        document.querySelector(".new_project").classList.add('hidden');
+        document.querySelector(".bg").classList.add('hidden');
         document.querySelector(".new_project").reset();
     }
 </script>

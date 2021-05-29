@@ -156,6 +156,9 @@ form.profile_form input{
     padding: 1rem;
     border-radius: 5px;
     margin-bottom: .2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .todo .task{
@@ -227,11 +230,32 @@ img{
 }
 
 .new_project{
-    background-color:rgba(58, 2, 85, 0.2) ;
+    margin-top: 20%;
+    background-color:#D4CCD9 ;
 }
 .new_project h2{
+
     display: block;
     width: max-content;
     margin-left: auto;
     cursor: pointer;
+}
+
+.bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+}
+
+button.delete{
+    background-color: transparent;
+    border: none;
+}
+
+
+button.delete img{
+height: 20px;
 }
