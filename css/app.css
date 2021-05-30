@@ -88,6 +88,9 @@ nav{
 
 nav a, nav a:visited{
     color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 1rem;
 }
 
 body.main{
@@ -176,18 +179,40 @@ main{
 h2{
     display: inline-block;
 }
-a.add{
-    display: block;
-    text-decoration: none;
+.add{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     font-weight: bold;
     padding: .5rem .8rem;
     border-radius: 50px;
     background-color: rgba(58, 2, 85, 1);
-    color: white;
     margin-left: auto;
-    width: max-content;
+    width: 34px;
+    overflow: hidden;
+    transition: 1s;
 
 }
+
+.add a:last-child{
+    color: white;
+    text-decoration: none;
+    margin: 0 .5rem;
+}
+.add a, .add a:visited{
+    color: white;
+    text-decoration: none;
+}
+
+.slide{
+    overflow: hidden;
+    height: 1rem;
+}
+
+.add:hover{
+    width: max-content;
+}
+
 #projects{
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 150px));

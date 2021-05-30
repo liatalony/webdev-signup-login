@@ -42,8 +42,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
 ?>
 <main>
     <h1><?= "{$project['project_name']}" ?></h1>
-    <a class="add" onclick="display()">+</a>
-
+    <div class="add">
+        <a href="#" onclick="display()">+</a>
+        <div class="slide">
+            <a href="#" onclick="display()">add task</a>
+        </div>
+    </div>
     <div id="tasks">
 
         <div>

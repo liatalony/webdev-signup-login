@@ -3,6 +3,8 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/router.php');
 
 // ##############################
+get('/', '/views/view_admin.php');
+
 get('/admin', '/views/view_admin.php');
 
 get('/login', '/views/view_login.php');
