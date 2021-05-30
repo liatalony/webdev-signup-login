@@ -26,9 +26,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
         $db = new PDO("sqlite:$db_path");
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-        $q = $db->prepare('SELECT * FROM users
+        $q = $db->prepare('SELECT user_uuid, first_name, last_name, email, age FROM users
                             WHERE active=1
-                            ORDER BY first_name asc');
+                            ORDER BY lower(first_name) asc');
         $q->execute();
         $users = $q->fetchAll();
         echo '<div id="users">';
