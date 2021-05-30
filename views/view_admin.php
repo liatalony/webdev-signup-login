@@ -50,7 +50,12 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/views/view_admin_top.php');
     ?>
 
     <h2>Your Projects</h2>
-    <a href="#" class="add" onclick="display()">+</a>
+    <div class="add">
+        <a href="#" onclick="display()">+</a>
+        <div class="slide">
+            <a href="#" onclick="display()">add project</a>
+        </div>
+    </div>
     </div>
     <div id="projects">
         <?php
