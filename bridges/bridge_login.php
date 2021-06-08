@@ -33,10 +33,10 @@ try {
         header('Location: /login');
         exit();
     }
-    // if (!password_verify($_POST['pass'], $user['user_password'])) {
-    //     header('Location: /login');
-    //     exit();
-    // }
+    if (!password_verify($_POST['pass'], $user['user_password'])) {
+        header('Location: /login');
+        exit();
+    }
     session_start();
     $_SESSION['user_uuid'] = $user['user_uuid'];
     $_SESSION['user_role'] = $user['user_role'];
